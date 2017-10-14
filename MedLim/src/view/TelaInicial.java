@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +27,7 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setBackground(Color.white);
         Image imagem = Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.jpg"));
         setIconImage(imagem);
-        jDialog1.setVisible(true);
+       // jDialog1.setVisible(true);
     }
 
     /**
@@ -56,11 +58,16 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 400, 400));
+        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 450, 450));
         jDialog1.setModal(true);
         jDialog1.setPreferredSize(new java.awt.Dimension(500, 500));
+        jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                jDialog1WindowClosed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Josefin Sans", 2, 30)); // NOI18N
         jLabel7.setText("Bem vindo!");
@@ -98,7 +105,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog1Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
                         .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +153,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,20 +263,77 @@ public class TelaInicial extends javax.swing.JFrame {
        tela.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
+   
+    boolean testeLogin = false;
+    
+    
+     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        
-     
+        
+        String x = new String(jPasswordField1.getPassword());
+        testeLogin = Control.fazerLogin(jTextField3.getText(), x);
+        if(testeLogin == true){
+            JOptionPane optionPane = new JOptionPane("Bem Vindo");
+            JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);
+            jDialog1.dispose();
+            }
+            else{
+                JOptionPane optionPane = new JOptionPane("Login ou Senha Invalidos");
+                JDialog dialog = optionPane.createDialog("Erro!");
+                dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+                dialog.setVisible(true);
+            }
+             
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-
+         
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-       
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           String x = new String(jPasswordField1.getPassword());
+           testeLogin = Control.fazerLogin(jTextField3.getText(), x);
+           if(testeLogin == true){
+            JOptionPane optionPane = new JOptionPane("Bem Vindo");
+            JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);
+            jDialog1.dispose();
+            }
+            else{
+                JOptionPane optionPane = new JOptionPane("Login ou Senha Invalidos");
+                JDialog dialog = optionPane.createDialog("Erro!");
+                dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+                dialog.setVisible(true);
+            }
+              
+        }
+        
+        
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
+    private void jDialog1WindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jDialog1WindowClosed
+       if(testeLogin == false){
+           System.exit(0);
+       }
+    }//GEN-LAST:event_jDialog1WindowClosed
+
+    /**
+     *
+     */
+    public void voltandoSemLogin(){
+        jDialog1.dispose();
+        JOptionPane optionPane = new JOptionPane("Login ou Senha Invalidos");
+        JDialog dialog = optionPane.createDialog("Erro!");
+        dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+        dialog.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -299,6 +363,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TelaInicial().setVisible(true);
             }

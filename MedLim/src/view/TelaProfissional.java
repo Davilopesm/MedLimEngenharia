@@ -110,6 +110,7 @@ public class TelaProfissional extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        TelaInicial tela = new TelaInicial();
+       tela.voltandoSemLogin();
        tela.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
