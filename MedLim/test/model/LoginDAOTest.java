@@ -42,12 +42,10 @@ public class LoginDAOTest {
      */
     @Test
     public void testChecarLogin() {
-        System.out.println("checarLogin");
-        String login = "admin";
-        String senha = "admin";
+        String login = "";
+        String senha = "";
         LoginDAO.getInstance();
         LoginDAO.checarLogin(login, senha);
-        // TODO review the generated test code and remove the default call to fail.
     }
     
 }

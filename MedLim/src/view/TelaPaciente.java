@@ -5,9 +5,12 @@
  */
 package view;
 
+import control.Control;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +75,11 @@ public class TelaPaciente extends javax.swing.JFrame {
         jLabel5.setText("Telefone: ");
 
         jButton3.setText("Salvar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/voltar.jpg"))); // NOI18N
         jButton4.setBorderPainted(false);
@@ -206,7 +214,7 @@ public class TelaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         jTextField2.setVisible(true);
+        jTextField2.setVisible(true);
         jLabel2.setVisible(true);
         jButton5.setVisible(true);
         jTextField1.setVisible(false);
@@ -219,6 +227,27 @@ public class TelaPaciente extends javax.swing.JFrame {
         jLabel5.setVisible(false);
         jButton3.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String nome = jTextField1.getText();
+        long CPF = Long.parseLong(jTextField2.getText());
+        long RG = Long.parseLong(jTextField3.getText());
+        String endereco = jTextField4.getText();
+        float telefone = Float.parseFloat(jTextField5.getText());
+        
+        if(Control.inserirPaciente(nome, CPF, RG, endereco, telefone) == true){
+            JOptionPane optionPane = new JOptionPane("Paciente salvo com sucesso");
+            JDialog dialog = optionPane.createDialog("Dados Salvos!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);            
+       }
+        else{
+            JOptionPane optionPane = new JOptionPane("Não conseguimos salvar o paciente no momento, tente novamente");
+            JDialog dialog = optionPane.createDialog("Erro!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);    
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
