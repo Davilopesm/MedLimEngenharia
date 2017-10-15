@@ -8,9 +8,9 @@ import model.*;
  */
 public class Control {
     
-    public static void fazerLogin(String login, String senha){
-        LoginDAO.getInstance().checarLogin(login, senha);
-        
+    public static boolean fazerLogin(String login, String senha){
+        LoginDAO.getInstance();                
+        return LoginDAO.checarLogin(login, senha) == true;        
     }
         
     
