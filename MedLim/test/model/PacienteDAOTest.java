@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.ResultSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,11 +47,11 @@ public class PacienteDAOTest {
     @Test
     public void testSalvarPaciente() {
         testGetInstance();
-        String nome = "Will";
+        String nome = "Davi";
         long CPF = 43098179805L;
         long RG = 426075006;
-        String endereco = "Valinhos";
-        float telefone = 998726323;
+        String endereco = "Paulinia";
+        float telefone = 99487631;
         boolean result = PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone);
         if(result == true){
             System.out.println("Deu certo");
@@ -59,6 +60,32 @@ public class PacienteDAOTest {
             fail("Deu ruim");
         }
         
+    }
+    
+    @Test
+    public void testBuscarPaciente(){
+        testGetInstance();
+        ResultSet result = null; 
+        result = PacienteDAO.buscarPaciente();
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+    
+    @Test
+    public void testBuscarUmPaciente(){
+        testGetInstance();
+        ResultSet result = null; 
+        result = PacienteDAO.buscarUmPaciente(43098179805L);
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
     }
     
 }

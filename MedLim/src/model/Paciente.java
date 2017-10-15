@@ -3,12 +3,12 @@ package model;
 
 public class Paciente {
     private String nome;
-    private float CPF;
-    private float RG;
+    private long CPF;
+    private long RG;
     private String endereco;
     private float telefone;
 
-    public Paciente(String nome, float CPF, float RG, String endereco, float telefone) {
+    public Paciente(String nome, long CPF, long RG, String endereco, float telefone) {
         this.nome = nome;
         this.CPF = CPF;
         this.RG = RG;
@@ -16,30 +16,32 @@ public class Paciente {
         this.telefone = telefone;
     }
 
+    Paciente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getNome() {
         return nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public float getRG() {
-        return RG;
-    }
-    
-    public void setNome(float RG) {
-        this.RG = RG;
-    }
 
-    
-
-    public float getCPF() {
+    public long getCPF() {
         return CPF;
     }
 
-    public void setCPF(float CPF) {
+    public void setCPF(long CPF) {
         this.CPF = CPF;
+    }
+
+    public long getRG() {
+        return RG;
+    }
+
+    public void setRG(long RG) {
+        this.RG = RG;
     }
 
     public String getEndereco() {
@@ -58,7 +60,6 @@ public class Paciente {
         this.telefone = telefone;
     }
 
-    
 
 
     

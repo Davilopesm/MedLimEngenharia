@@ -25,13 +25,7 @@ public abstract class DAO {
     
     
     
-    public void fecharConexao() {
-        try {
-            (this.getConnection()).close();
-        } catch (SQLException e) {
-            
-        }
-    }
+   
     
     
 }

@@ -1,5 +1,7 @@
 package control;
 
+import java.sql.ResultSet;
+import java.util.List;
 import model.*;
 
 /**
@@ -17,6 +19,17 @@ public class Control {
         PacienteDAO.getInstance();                
         return PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone) == true; 
     }
+    
+    public static ResultSet buscarPaciente(){
+        ResultSet rs = PacienteDAO.buscarPaciente();
+        return rs;
+    }
+    
+    public static ResultSet buscarUmPaciente(long CPF){
+        ResultSet rs = PacienteDAO.buscarUmPaciente(CPF);
+        return rs;
+    }
+       
         
     
 }

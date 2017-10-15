@@ -36,14 +36,19 @@ public class LoginDAO extends DAO {
             ResultSet rs = pstmt.executeQuery();
             
             if(rs.next()){
-               return true;         
+               pstmt.close();
+               return true;                             
             }
             else{
+               pstmt.close();
                return false;             
             }
 
         }catch(SQLException ex){
             return false;
+        }
+        finally{
+           
         }
     }
         
