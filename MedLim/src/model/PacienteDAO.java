@@ -32,14 +32,14 @@ public class PacienteDAO extends DAO {
      * @param telefone
      * @return
      */
-    public static boolean salvarPaciente(String nome, float CPF, float RG, String endereco, float telefone){
+    public static boolean salvarPaciente(String nome, long CPF, long RG, String endereco, float telefone){
         String salvar = "INSERT INTO paciente (nome,CPF,RG,endereco,telefone) VALUES (?,?,?,?,?)";
         PreparedStatement pstmt;
         try{
             pstmt = myCONN.prepareStatement(salvar);
             pstmt.setString(1, nome);
-            pstmt.setFloat(2, CPF);
-            pstmt.setFloat(3, RG);
+            pstmt.setLong(2, CPF);
+            pstmt.setLong(3, RG);
             pstmt.setString(4, endereco);
             pstmt.setFloat(5, telefone);
             pstmt.executeUpdate();           

@@ -47,8 +47,8 @@ public class PacienteDAOTest {
     public void testSalvarPaciente() {
         testGetInstance();
         String nome = "Will";
-        float CPF = 430981;
-        float RG = 213312231;
+        long CPF = 43098179805L;
+        long RG = 426075006;
         String endereco = "Valinhos";
         float telefone = 998726323;
         boolean result = PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone);

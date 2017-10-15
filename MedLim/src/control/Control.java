@@ -13,7 +13,7 @@ public class Control {
         return LoginDAO.checarLogin(login, senha) == true;        
     }
     
-    public static boolean inserirPaciente(String nome, float CPF, float RG, String endereco, float telefone){ 
+    public static boolean inserirPaciente(String nome, long CPF, long RG, String endereco, float telefone){ 
         PacienteDAO.getInstance();                
         return PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone) == true; 
     }

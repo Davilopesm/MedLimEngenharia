@@ -230,8 +230,8 @@ public class TelaPaciente extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = jTextField1.getText();
-        float CPF = Float.parseFloat(jTextField2.getText());
-        float RG = Float.parseFloat(jTextField3.getText());
+        long CPF = Long.parseLong(jTextField2.getText());
+        long RG = Long.parseLong(jTextField3.getText());
         String endereco = jTextField4.getText();
         float telefone = Float.parseFloat(jTextField5.getText());
         
