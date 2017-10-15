@@ -16,10 +16,21 @@ public abstract class DAO {
            try {
                con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/medlim", "root", "davi");
            } catch (SQLException e) {
-               throw new IllegalStateException("Cannot connect the database!", e);
+               throw new IllegalStateException("Não conseguimos conectar ao banco de dados!", e);
            }
        }
        return con;
+    }
+    
+    
+    
+    
+    public void fecharConexao() {
+        try {
+            (this.getConnection()).close();
+        } catch (SQLException e) {
+            
+        }
     }
     
     
