@@ -87,14 +87,13 @@ public class PacienteDAO extends DAO {
         pstmt = myCONN.prepareStatement(sql);
         pstmt.setLong(1, CPF);
         rs = pstmt.executeQuery();  
-        while(rs.next()){
-            return rs;
-        }       
+        return rs;
+       
       }
       catch(SQLException ex){
            return null;
       }                    
-        return null;
+       
     }
     
 }

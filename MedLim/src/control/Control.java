@@ -21,11 +21,13 @@ public class Control {
     }
     
     public static ResultSet buscarPaciente(){
+        PacienteDAO.getInstance();  
         ResultSet rs = PacienteDAO.buscarPaciente();
         return rs;
     }
     
     public static ResultSet buscarUmPaciente(long CPF){
+        PacienteDAO.getInstance();  
         ResultSet rs = PacienteDAO.buscarUmPaciente(CPF);
         return rs;
     }
