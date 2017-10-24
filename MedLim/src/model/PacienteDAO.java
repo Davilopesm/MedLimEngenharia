@@ -5,8 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class PacienteDAO extends DAO {
@@ -38,7 +37,7 @@ public class PacienteDAO extends DAO {
      * @param telefone
      * @return
      */
-    public static boolean salvarPaciente(String nome, long CPF, long RG, String endereco, float telefone){
+    public static boolean salvarPaciente(String nome, long CPF, long RG, String endereco, String telefone){
         sql = "INSERT INTO paciente (nome,CPF,RG,endereco,telefone) VALUES (?,?,?,?,?)";
         try{
             pstmt = myCONN.prepareStatement(sql);
@@ -46,7 +45,7 @@ public class PacienteDAO extends DAO {
             pstmt.setLong(2, CPF);
             pstmt.setLong(3, RG);
             pstmt.setString(4, endereco);
-            pstmt.setFloat(5, telefone);
+            pstmt.setString(5, telefone);
             pstmt.executeUpdate();
             return true;
         }
@@ -94,6 +93,22 @@ public class PacienteDAO extends DAO {
            return null;
       }                    
        
+    }
+    
+    
+    public static boolean deletarPaciente(long CPF){
+        
+        sql = "DELETE FROM paciente WHERE CPF = ?";
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPF);
+            pstmt.executeUpdate();  
+            return true;              
+        }
+        catch(SQLException ex){
+           return false;
+        }                    
     }
     
 }

@@ -1,7 +1,6 @@
 package control;
 
 import java.sql.ResultSet;
-import java.util.List;
 import model.*;
 
 /**
@@ -9,13 +8,14 @@ import model.*;
  * @author ScrumTeam
  */
 public class Control {
-    
+    //FUNÇÃO DE LOGIN
     public static boolean fazerLogin(String login, String senha){
         LoginDAO.getInstance();                
         return LoginDAO.checarLogin(login, senha) == true;        
     }
     
-    public static boolean inserirPaciente(String nome, long CPF, long RG, String endereco, float telefone){ 
+    //FUNÇÕES DE PACIENTE
+    public static boolean inserirPaciente(String nome, long CPF, long RG, String endereco, String telefone){ 
         PacienteDAO.getInstance();                
         return PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone) == true; 
     }
@@ -31,6 +31,43 @@ public class Control {
         ResultSet rs = PacienteDAO.buscarUmPaciente(CPF);
         return rs;
     }
+    
+     public static boolean deletarPaciente(long CPF){ 
+        PacienteDAO.getInstance();                
+        return PacienteDAO.deletarPaciente(CPF) == true; 
+    }
+    
+    
+    //FUNÇÕES DE PROFISSIONAL
+    public static boolean inserirProfissionalTecnico(String nome, long CPF, long RG, String endereco, String telefone, String cargo){ 
+        ProfissionalDAO.getInstance();                
+        return ProfissionalDAO.salvarProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo) == true; 
+    }
+    
+    public static boolean inserirProfissionalMedico(String nome, long CPF, long RG, String endereco, String telefone, long CRM, String area_de_atuacao){ 
+        ProfissionalDAO.getInstance();                
+        return ProfissionalDAO.salvarProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao) == true; 
+    }
+    
+    public static ResultSet buscarUmProfissionalMedico(long CPF){
+        ProfissionalDAO.getInstance();  
+        ResultSet rs = ProfissionalDAO.buscarUmProfissionalMedico(CPF);
+        return rs;
+    }
+    
+    public static ResultSet buscarProfissionalMedico(){
+        ProfissionalDAO.getInstance();  
+        ResultSet rs = ProfissionalDAO.buscarProfissionalMedico();
+        return rs;
+    }
+    
+    public static boolean deletarProfissional(long CPF){ 
+        ProfissionalDAO.getInstance();                
+        return ProfissionalDAO.deletarProfissional(CPF) == true; 
+    }
+    
+    
+    
        
         
     

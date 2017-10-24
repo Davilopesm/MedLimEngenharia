@@ -47,11 +47,11 @@ public class PacienteDAOTest {
     @Test
     public void testSalvarPaciente() {
         testGetInstance();
-        String nome = "Davi";
+        String nome = "Fabio do Prado";
         long CPF = 43098179805L;
         long RG = 426075006;
         String endereco = "Paulinia";
-        float telefone = 99487631;
+        String telefone = "(19)992487631";
         boolean result = PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone);
         if(result == true){
             System.out.println("Deu certo");
