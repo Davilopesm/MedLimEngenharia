@@ -46,6 +46,7 @@ public class PacienteDAOTest {
 
     @Test
     public void testSalvarPaciente() {
+        System.out.println("salvarPaciente");
         testGetInstance();
         String nome = "Fabio do Prado";
         long CPF = 43098179805L;
@@ -64,6 +65,7 @@ public class PacienteDAOTest {
     
     @Test
     public void testBuscarPaciente(){
+        System.out.println("buscarPaciente");
         testGetInstance();
         ResultSet result = null; 
         result = PacienteDAO.buscarPaciente();
@@ -77,10 +79,24 @@ public class PacienteDAOTest {
     
     @Test
     public void testBuscarUmPaciente(){
+        System.out.println("buscarUmPaciente");
         testGetInstance();
         ResultSet result = null; 
         result = PacienteDAO.buscarUmPaciente(43098179805L);
         if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+
+    @Test
+    public void testDeletarPaciente() {
+        System.out.println("deletarPaciente");
+        long CPF = 43098179805L;
+        boolean result = PacienteDAO.deletarPaciente(CPF);
+        if(result == true){
             System.out.println(result);            
         }
         else{

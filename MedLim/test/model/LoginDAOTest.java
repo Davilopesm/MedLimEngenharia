@@ -42,10 +42,17 @@ public class LoginDAOTest {
      */
     @Test
     public void testChecarLogin() {
-        String login = "";
-        String senha = "";
+        String login = "admin";
+        String senha = "admin";
         LoginDAO.getInstance();
-        LoginDAO.checarLogin(login, senha);
+        boolean result = LoginDAO.checarLogin(login, senha);
+        if(result == true){
+            System.out.println("Deu certo");
+        }
+        else{
+            fail("Deu Ruim");
+        }
+        
     }
     
 }

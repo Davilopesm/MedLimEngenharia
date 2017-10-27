@@ -121,5 +121,22 @@ public class ProfissionalDAOTest {
             fail("Deu Ruim");
         }
     }
+
+    @Test
+    public void testDeletarProfissional() {
+        System.out.println("deletarProfissional");
+        testGetInstance();
+        long CPF = 43098179805L;
+        boolean result = ProfissionalDAO.deletarProfissional(CPF);
+        long CPFTecnico = 430795805L;
+        boolean resultTecnico = ProfissionalDAO.deletarProfissional(CPFTecnico);
+        if(result == true && resultTecnico == true){
+            System.out.println("Deu certo");
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+    
     
 }

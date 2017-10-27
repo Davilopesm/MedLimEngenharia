@@ -67,8 +67,35 @@ public class Control {
     }
     
     
+    //FUNÇÕES DE ATENDIMENTO
     
-       
+    public static boolean pacienteExiste(long CPF){ 
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.consultarPacienteExiste(CPF) == true; 
+    }   
+    
+    public static boolean medicoExiste(String nomeMedico){ 
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.consultarMedicoExiste(nomeMedico) == true; 
+    }  
+    
+    public static boolean horarioJaUsado(String nomeMedico, String data, String horario){ 
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.horarioUsado(nomeMedico, data, horario) == true; 
+    }  
+    
+    public static String[] horariosVagos(String nomeMedico, String data) {
+        AtendimentoDAO.getInstance();
+        return AtendimentoDAO.horariosVagos(nomeMedico, data);
+    }
+    
+    public static boolean agendarConsulta(long CPFPaciente, String nomeMedico, String data, String horario){ 
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.salvarConsulta(CPFPaciente, nomeMedico, data, horario) == true; 
+    }  
+
+
+    
         
     
 }
