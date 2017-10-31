@@ -63,9 +63,21 @@ public class Control {
         return rs;
     }
     
+    public static ResultSet buscarUmProfissionalTecnico(long CPF){
+        ProfissionalDAO.getInstance();  
+        ResultSet rs = ProfissionalDAO.buscarUmProfissionalTecnico(CPF);
+        return rs;
+    }
+    
     public static ResultSet buscarProfissionalMedico(){
         ProfissionalDAO.getInstance();  
         ResultSet rs = ProfissionalDAO.buscarProfissionalMedico();
+        return rs;
+    }
+    
+    public static ResultSet buscarProfissionalTecnico(){
+        ProfissionalDAO.getInstance();  
+        ResultSet rs = ProfissionalDAO.buscarProfissionalTecnico();
         return rs;
     }
     

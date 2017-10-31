@@ -90,9 +90,43 @@ public class ProfissionalDAO extends DAO{
        
     }
     
+    public static ResultSet buscarUmProfissionalTecnico(long CPF)  {
+ 
+      sql = "SELECT * FROM profissional WHERE CPF=?";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setLong(1, CPF);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+        return null;
+      }                    
+       
+    }
+    
      public static ResultSet buscarProfissionalMedico(){
        
-      sql = "SELECT * FROM profissional";
+      sql = "SELECT * FROM profissional WHERE cargo IS NULL";
+
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        rs = pstmt.executeQuery();
+      }
+      catch(SQLException ex){
+           return null;
+      }  
+      return rs;
+    }
+     
+    public static ResultSet buscarProfissionalTecnico(){
+       
+      sql = "SELECT * FROM profissional WHERE CRM IS NULL";
+
       
       try{
         pstmt = myCONN.prepareStatement(sql);
