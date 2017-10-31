@@ -11,8 +11,16 @@ public class Control {
     //FUNÇÃO DE LOGIN
     public static boolean fazerLogin(String login, String senha){
         LoginDAO.getInstance();                
-        return LoginDAO.checarLogin(login, senha) == true;        
+        return LoginDAO.checarLogin(login, senha);        
     }
+    
+    public static boolean criarLogin(){
+        LoginDAO.getInstance();                
+        LoginDAO.cadastrarLogin();
+        return true;
+    }
+    
+    
     
     //FUNÇÕES DE PACIENTE
     public static boolean inserirPaciente(String nome, long CPF, long RG, String endereco, String telefone){ 
@@ -34,7 +42,7 @@ public class Control {
     
      public static boolean deletarPaciente(long CPF){ 
         PacienteDAO.getInstance();                
-        return PacienteDAO.deletarPaciente(CPF) == true; 
+        return PacienteDAO.deletarPaciente(CPF); 
     }
     
     
