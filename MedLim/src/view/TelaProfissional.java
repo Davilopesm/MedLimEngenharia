@@ -632,7 +632,7 @@ public class TelaProfissional extends javax.swing.JFrame {
         String telefone = jTextField12.getText();
         String cargo = jTextField13.getText();
         
-        if(Control.inserirProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo) == true){
+        if(Control.inserirProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo)){
             JOptionPane optionPane = new JOptionPane("Tecnico salvo com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Salvos!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
@@ -656,7 +656,7 @@ public class TelaProfissional extends javax.swing.JFrame {
         String area_de_atuacao = jTextField7.getText();
         
         
-        if(Control.inserirProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao) == true){
+        if(Control.inserirProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao)){
             JOptionPane optionPane = new JOptionPane("Medico salvo com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Salvos!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());

@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String x = new String(jPasswordField1.getPassword());
-        if(Control.fazerLogin(jTextField1.getText(), x) == true){
+        if(Control.fazerLogin(jTextField1.getText(), x)){
             JOptionPane optionPane = new JOptionPane("Bem Vindo" + jTextField1.getText());
             JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
             dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
            String x = new String(jPasswordField1.getPassword());
            Control.fazerLogin(jTextField1.getText(), x);
-           if(Control.fazerLogin(jTextField1.getText(), x) == true){
+           if(Control.fazerLogin(jTextField1.getText(), x)){
             JOptionPane optionPane = new JOptionPane("Bem Vindo " + jTextField1.getText());
             JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
             dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());

@@ -371,7 +371,7 @@ public class TelaPaciente extends javax.swing.JFrame {
         String endereco = jTextField4.getText();
         String telefone = jTextField5.getText();
         
-        if(Control.inserirPaciente(nome, CPF, RG, endereco, telefone) == true){
+        if(Control.inserirPaciente(nome, CPF, RG, endereco, telefone)){
             JOptionPane optionPane = new JOptionPane("Paciente salvo com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Salvos!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
@@ -419,7 +419,7 @@ public class TelaPaciente extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         long CPF = Long.parseLong(jTextField7.getText());
         
-        if(Control.deletarPaciente(CPF) == true){
+        if(Control.deletarPaciente(CPF)){
             JOptionPane optionPane = new JOptionPane("Paciente deletado com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Deletados!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());

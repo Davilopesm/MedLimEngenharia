@@ -98,7 +98,7 @@ public class PacienteDAO extends DAO {
     
     public static boolean deletarPaciente(long CPF){
         
-        sql = "DELETE FROM paciente WHERE CPF = ?";
+        sql = "DELETE FROM paciente WHERE (CPF)=(?)";
         
         try{
             pstmt = myCONN.prepareStatement(sql);

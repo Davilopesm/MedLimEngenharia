@@ -46,7 +46,7 @@ public class LoginDAOTest {
         String senha = "admin";
         LoginDAO.getInstance();
         boolean result = LoginDAO.checarLogin(login, senha);
-        if(result == true){
+        if(result){
             System.out.println("Deu certo");
         }
         else{

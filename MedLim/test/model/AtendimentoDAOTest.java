@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.ResultSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,7 +57,7 @@ public class AtendimentoDAOTest {
         System.out.println("consultarPacienteExiste");
         long CPFPaciente = 43098179805L;
         boolean result = AtendimentoDAO.consultarPacienteExiste(CPFPaciente);
-        if(result == true){
+        if(result){
           System.out.println("Deu bom");  
         }
         else{
@@ -70,7 +71,7 @@ public class AtendimentoDAOTest {
         System.out.println("consultarPacienteExiste");
         String nomeMedico = "Jorge Canvas";
         boolean result = AtendimentoDAO.consultarMedicoExiste(nomeMedico);
-        if(result == true){
+        if(result){
           System.out.println("Deu bom");  
         }
         else{
@@ -86,7 +87,7 @@ public class AtendimentoDAOTest {
         String data = "31-10-2017";
         String horario = "16:00";
         boolean result = AtendimentoDAO.horarioUsado(nomeMedico, data, horario);
-        if(result != true){
+        if(!result){
             System.out.println("Deu bom");  
         }
         else{
@@ -120,7 +121,7 @@ public class AtendimentoDAOTest {
         String data = "31-10-2017";
         String horario = "16:00";
         boolean result = AtendimentoDAO.salvarConsulta(CPFPaciente, nomeMedico, data, horario);
-        if(result == true){
+        if(result){
             System.out.println("Deu bom");  
         }
         else{
@@ -129,6 +130,34 @@ public class AtendimentoDAOTest {
     }
 
     @Test
+    public void testBuscarConsultaMedico() {
+        System.out.println("buscarConsultaMedico");
+        testGetInstance();
+        ResultSet result; 
+        result = AtendimentoDAO.buscarConsultaMedico("Jorge Canvas");
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+
+    @Test
+    public void testBuscarConsultaPaciente() {
+        System.out.println("buscarConsultaPaciente");
+        testGetInstance();
+        ResultSet result; 
+        result = AtendimentoDAO.buscarConsultaPaciente(43098179805L);
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+    
+    @Test
     public void testDeletarConsulta() {
         testGetInstance();
         System.out.println("deletarConsulta");
@@ -136,14 +165,12 @@ public class AtendimentoDAOTest {
         String data = "31-10-2017";
         String horario = "16:00";
         boolean result = AtendimentoDAO.deletarConsulta(CPFPaciente, data, horario);
-        if(result == true){
+        if(result){
             System.out.println("Deu bom");  
         }
         else{
             fail("Deu ruim.");
         }   
     }
-    
-    
     
 }

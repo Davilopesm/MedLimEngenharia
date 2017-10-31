@@ -60,7 +60,7 @@ public class ProfissionalDAOTest {
         String telefone = "(19)992487631";
         String cargo = "Atendente";
         boolean result = ProfissionalDAO.salvarProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo);
-        if(result == true){
+        if(result){
             System.out.println("Deu certo");
         }
         else{
@@ -82,7 +82,7 @@ public class ProfissionalDAOTest {
         long CRM = 1234567;
         String area_de_atuacao = "Oncologista";
         boolean result = ProfissionalDAO.salvarProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao);
-        if(result == true){
+        if(result){
             System.out.println("Deu certo");
         }
         else{
@@ -130,7 +130,7 @@ public class ProfissionalDAOTest {
         boolean result = ProfissionalDAO.deletarProfissional(CPF);
         long CPFTecnico = 430795805L;
         boolean resultTecnico = ProfissionalDAO.deletarProfissional(CPFTecnico);
-        if(result == true && resultTecnico == true){
+        if(result && resultTecnico){
             System.out.println("Deu certo");
         }
         else{

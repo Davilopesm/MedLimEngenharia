@@ -149,5 +149,41 @@ public class AtendimentoDAO extends DAO {
         }                    
     }
     
+     public static ResultSet buscarConsultaMedico(String nomeMedico)  {
+ 
+      sql = "SELECT * FROM consulta WHERE nome_medico=?";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setString(1, nomeMedico);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }                    
+       
+    }
+     
+    public static ResultSet buscarConsultaPaciente(long CPFPaciente)  {
+ 
+      sql = "SELECT * FROM consulta WHERE CPF_paciente=?";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setLong(1, CPFPaciente);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }                    
+       
+    }
+    
     
 }

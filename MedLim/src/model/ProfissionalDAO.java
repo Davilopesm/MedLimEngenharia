@@ -107,7 +107,7 @@ public class ProfissionalDAO extends DAO{
      
     public static boolean deletarProfissional(long CPF){
        
-      sql = "DELETE FROM profissional WHERE CPF = ?";
+      sql = "DELETE FROM profissional WHERE (CPF)=(?)";
         
         try{
             pstmt = myCONN.prepareStatement(sql);

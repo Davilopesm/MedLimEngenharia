@@ -98,6 +98,18 @@ public class Control {
         AtendimentoDAO.getInstance();                
         return AtendimentoDAO.deletarConsulta(CPFPaciente, data, horario) == true; 
     }
+    
+    public static ResultSet buscarConsultaMedico(String nomeMedico){
+        AtendimentoDAO.getInstance();  
+        ResultSet rs = AtendimentoDAO.buscarConsultaMedico(nomeMedico);
+        return rs;
+    }
+    
+    public static ResultSet buscarConsultaPaciente(long CPFPaciente){
+        AtendimentoDAO.getInstance();  
+        ResultSet rs = AtendimentoDAO.buscarConsultaPaciente(CPFPaciente);
+        return rs;
+    }
 
 
     
