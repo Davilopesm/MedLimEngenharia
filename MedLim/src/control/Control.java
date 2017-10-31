@@ -93,6 +93,11 @@ public class Control {
         AtendimentoDAO.getInstance();                
         return AtendimentoDAO.salvarConsulta(CPFPaciente, nomeMedico, data, horario) == true; 
     }  
+    
+    public static boolean deletarConsulta(long CPFPaciente, String data, String horario){
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.deletarConsulta(CPFPaciente, data, horario) == true; 
+    }
 
 
     

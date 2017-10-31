@@ -92,8 +92,7 @@ public class AtendimentoDAO extends DAO {
     }
     
     public static String[] horariosVagos(String nomeMedico, String data) {
-        sql = "SELECT * FROM consulta WHERE (nome_medico,data)=(?,?)"; 
-        String[] horarioUsado = null;       
+        sql = "SELECT * FROM consulta WHERE (nome_medico,data)=(?,?)";        
         
         List<String> listOfString = new ArrayList<String>();
 
@@ -104,16 +103,14 @@ public class AtendimentoDAO extends DAO {
             pstmt.setString(2, data);
             rs = pstmt.executeQuery();
             while(rs.next()){
-                //horarioUsado = new String[]{rs.getString("horario")};
                 listOfString.add(rs.getString("horario"));
             }          
         }
         catch(SQLException ex){
             return null;
         }
-        
-       // String retorno = String.join(", ", horarioUsado);
-       String[] retorno = listOfString .toArray(new String[0]);
+
+       String[] retorno = listOfString.toArray(new String[0]);
        return retorno;
     }
     
@@ -134,6 +131,22 @@ public class AtendimentoDAO extends DAO {
         catch(SQLException ex){
             return false;            
         }
+    }
+    
+    public static boolean deletarConsulta(long CPFPaciente, String data, String horario){
+        sql = "DELETE FROM consulta WHERE (CPF_paciente,data,horario) = (?,?,?)";
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPFPaciente);
+            pstmt.setString(2, data);
+            pstmt.setString(3, horario);
+            pstmt.executeUpdate();  
+            return true;              
+        }
+        catch(SQLException ex){
+           return false;
+        }                    
     }
     
     
