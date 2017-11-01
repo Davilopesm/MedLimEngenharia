@@ -94,6 +94,48 @@ public class PacienteDAO extends DAO {
       }                    
        
     }
+     
+    
+    public static String buscarHistorico(long CPF)  {
+ 
+      sql = "SELECT * FROM paciente WHERE CPF=?";
+      String historico;
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setLong(1, CPF);
+        rs = pstmt.executeQuery();  
+        while(rs.next()){
+            historico = (rs.getString("historico"));
+            return historico;
+        }          
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }     
+      
+      return null;
+       
+    }
+    
+    public static boolean atualizarHistorico(long CPF, String historico){
+        
+      sql = "UPDATE paciente SET historico = ? WHERE CPF = ?";
+     
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setLong(2, CPF);
+        pstmt.setString(1, historico);
+        pstmt.executeUpdate();
+        return true;        
+      }
+      catch(SQLException ex){
+           return false;
+      }     
+     
+    }
     
     
     public static boolean deletarPaciente(long CPF){

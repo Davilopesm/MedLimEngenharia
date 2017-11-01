@@ -103,5 +103,33 @@ public class PacienteDAOTest {
             fail("Deu Ruim");
         }
     }
+
+    @Test
+    public void testBuscarHistorico() {
+        System.out.println("buscarHistorico");
+        long CPF = 43098179805L;
+        String result = PacienteDAO.buscarHistorico(CPF);
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+
+    @Test
+    public void testAtualizarHistorico() {
+        testGetInstance();
+        System.out.println("buscarHistorico");
+        long CPF = 43098179805L;
+        String teste = "Fala chapa";
+        boolean result = PacienteDAO.atualizarHistorico(CPF, teste);
+        if(result){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
     
 }

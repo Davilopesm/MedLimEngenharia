@@ -191,6 +191,22 @@ public class AtendimentoDAO extends DAO {
         }
     }
     
+    public static ResultSet buscarTodasConsultas()  {
+ 
+      sql = "SELECT * FROM consulta";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }                    
+       
+    }
    
     public static ResultSet buscarConsultaMedico(String nomeMedico)  {
  
@@ -226,6 +242,22 @@ public class AtendimentoDAO extends DAO {
            return null;
       }                    
        
+    }
+    
+    public static ResultSet buscarTodosExames()  {
+ 
+      sql = "SELECT * FROM exame";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }                        
     }
     
      
