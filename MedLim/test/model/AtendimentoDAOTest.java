@@ -128,6 +128,20 @@ public class AtendimentoDAOTest {
             fail("Deu ruim.");
         }   
     }
+    
+    @Test
+    public void testBuscarTodasConsultas() {
+        System.out.println("buscarTodasConsultas");
+        testGetInstance();
+        ResultSet result = null;
+        result = AtendimentoDAO.buscarTodasConsultas();
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
 
     @Test
     public void testBuscarConsultaMedico() {
@@ -220,6 +234,19 @@ public class AtendimentoDAOTest {
         }   
     }
 
+    @Test
+    public void testBuscarTodosExames() {
+        System.out.println("buscarTodosExames");
+        testGetInstance();
+        ResultSet result = null;
+        result = AtendimentoDAO.buscarTodosExames();
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
   
 
     @Test
@@ -251,5 +278,9 @@ public class AtendimentoDAOTest {
             fail("Deu ruim.");
         }   
     }
+
+    
+
+    
     
 }

@@ -124,6 +124,13 @@ public class Control {
         return AtendimentoDAO.deletarExame(CPFPaciente, data, horario); 
     }
     
+    public static ResultSet buscarTodasConsultas() {
+        AtendimentoDAO.getInstance();  
+        ResultSet rs = AtendimentoDAO.buscarTodasConsultas();
+        return rs;
+    }
+
+    
     public static ResultSet buscarConsultaMedico(String nomeMedico){
         AtendimentoDAO.getInstance();  
         ResultSet rs = AtendimentoDAO.buscarConsultaMedico(nomeMedico);
@@ -133,6 +140,12 @@ public class Control {
     public static ResultSet buscarConsultaPaciente(long CPFPaciente){
         AtendimentoDAO.getInstance();  
         ResultSet rs = AtendimentoDAO.buscarConsultaPaciente(CPFPaciente);
+        return rs;
+    }
+    
+    public static ResultSet buscarTodosExames() {
+        AtendimentoDAO.getInstance();  
+        ResultSet rs = AtendimentoDAO.buscarTodosExames();
         return rs;
     }
     
@@ -157,6 +170,7 @@ public class Control {
         return AtendimentoDAO.horariosVagosExame(data);
     }
 
+  
  
 
    
