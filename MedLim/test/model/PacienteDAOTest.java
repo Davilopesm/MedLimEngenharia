@@ -54,7 +54,7 @@ public class PacienteDAOTest {
         String endereco = "Paulinia";
         String telefone = "(19)992487631";
         boolean result = PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone);
-        if(result == true){
+        if(result){
             System.out.println("Deu certo");
         }
         else{
@@ -96,7 +96,7 @@ public class PacienteDAOTest {
         System.out.println("deletarPaciente");
         long CPF = 43098179805L;
         boolean result = PacienteDAO.deletarPaciente(CPF);
-        if(result == true){
+        if(result){
             System.out.println(result);            
         }
         else{

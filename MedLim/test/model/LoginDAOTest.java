@@ -5,12 +5,15 @@
  */
 package model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import sun.misc.BASE64Encoder;
 
 /**
  *
@@ -44,9 +47,20 @@ public class LoginDAOTest {
     public void testChecarLogin() {
         String login = "admin";
         String senha = "admin";
+        
+        try{//converter para hash q senha
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(senha.getBytes());
+            BASE64Encoder encoder = new BASE64Encoder();
+            senha = encoder.encode(digest.digest());
+	}
+        catch(NoSuchAlgorithmException ns){
+            
+	}
+        
         LoginDAO.getInstance();
         boolean result = LoginDAO.checarLogin(login, senha);
-        if(result == true){
+        if(result){
             System.out.println("Deu certo");
         }
         else{

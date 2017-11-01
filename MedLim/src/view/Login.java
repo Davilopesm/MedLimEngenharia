@@ -11,8 +11,11 @@ import java.awt.Toolkit;
 import model.*;
 import control.*;
 import java.awt.event.KeyEvent;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import sun.misc.BASE64Encoder;
 
 
 /**
@@ -109,13 +112,13 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(258, 258, 258))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(16, 16, 16)
                         .addComponent(jLabel6)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(258, 258, 258))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +155,22 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String x = new String(jPasswordField1.getPassword());
-        if(Control.fazerLogin(jTextField1.getText(), x) == true){
-            JOptionPane optionPane = new JOptionPane("Bem Vindo" + jTextField1.getText());
+        String senha = new String(jPasswordField1.getPassword());
+        try{
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(senha.getBytes());
+            BASE64Encoder encoder = new BASE64Encoder();
+            senha = encoder.encode(digest.digest());
+	}
+        catch(NoSuchAlgorithmException ns){
+            JOptionPane optionPane = new JOptionPane("Erro");
+            JDialog dialog = optionPane.createDialog("Error!");
+            dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());
+            dialog.setVisible(true);
+	}
+		
+        if(Control.fazerLogin(jTextField1.getText(), senha)){
+            JOptionPane optionPane = new JOptionPane("Bem Vindo " + jTextField1.getText());
             JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
             dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());
             dialog.setVisible(true);
@@ -175,9 +191,23 @@ public class Login extends javax.swing.JFrame {
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-           String x = new String(jPasswordField1.getPassword());
-           Control.fazerLogin(jTextField1.getText(), x);
-           if(Control.fazerLogin(jTextField1.getText(), x) == true){
+           String senha = new String(jPasswordField1.getPassword());
+           
+           try{
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(senha.getBytes());
+            BASE64Encoder encoder = new BASE64Encoder();
+            senha = encoder.encode(digest.digest());
+            }
+            catch(NoSuchAlgorithmException ns){
+                JOptionPane optionPane = new JOptionPane("Erro");
+                JDialog dialog = optionPane.createDialog("Error!");
+                dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());
+                dialog.setVisible(true);
+            }
+           
+           Control.fazerLogin(jTextField1.getText(), senha);
+           if(Control.fazerLogin(jTextField1.getText(), senha)){
             JOptionPane optionPane = new JOptionPane("Bem Vindo " + jTextField1.getText());
             JDialog dialog = optionPane.createDialog("Logado com Sucesso!");
             dialog.setAlwaysOnTop(loginTela.isAlwaysOnTopSupported());
