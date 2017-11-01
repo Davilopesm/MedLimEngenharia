@@ -25,7 +25,7 @@ public class Control {
     //FUNÇÕES DE PACIENTE
     public static boolean inserirPaciente(String nome, long CPF, long RG, String endereco, String telefone){ 
         PacienteDAO.getInstance();                
-        return PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone) == true; 
+        return PacienteDAO.salvarPaciente(nome, CPF, RG, endereco, telefone); 
     }
     
     public static ResultSet buscarPaciente(){
@@ -49,12 +49,12 @@ public class Control {
     //FUNÇÕES DE PROFISSIONAL
     public static boolean inserirProfissionalTecnico(String nome, long CPF, long RG, String endereco, String telefone, String cargo){ 
         ProfissionalDAO.getInstance();                
-        return ProfissionalDAO.salvarProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo) == true; 
+        return ProfissionalDAO.salvarProfissionalTecnico(nome, CPF, RG, endereco, telefone, cargo); 
     }
     
     public static boolean inserirProfissionalMedico(String nome, long CPF, long RG, String endereco, String telefone, long CRM, String area_de_atuacao){ 
         ProfissionalDAO.getInstance();                
-        return ProfissionalDAO.salvarProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao) == true; 
+        return ProfissionalDAO.salvarProfissionalMedico(nome, CPF, RG, endereco, telefone, CRM, area_de_atuacao); 
     }
     
     public static ResultSet buscarUmProfissionalMedico(long CPF){
@@ -83,7 +83,7 @@ public class Control {
     
     public static boolean deletarProfissional(long CPF){ 
         ProfissionalDAO.getInstance();                
-        return ProfissionalDAO.deletarProfissional(CPF) == true; 
+        return ProfissionalDAO.deletarProfissional(CPF); 
     }
     
     
@@ -91,17 +91,17 @@ public class Control {
     
     public static boolean pacienteExiste(long CPF){ 
         AtendimentoDAO.getInstance();                
-        return AtendimentoDAO.consultarPacienteExiste(CPF) == true; 
+        return AtendimentoDAO.consultarPacienteExiste(CPF); 
     }   
     
     public static boolean medicoExiste(String nomeMedico){ 
         AtendimentoDAO.getInstance();                
-        return AtendimentoDAO.consultarMedicoExiste(nomeMedico) == true; 
+        return AtendimentoDAO.consultarMedicoExiste(nomeMedico); 
     }  
     
     public static boolean horarioJaUsado(String nomeMedico, String data, String horario){ 
         AtendimentoDAO.getInstance();                
-        return AtendimentoDAO.horarioUsado(nomeMedico, data, horario) == true; 
+        return AtendimentoDAO.horarioUsado(nomeMedico, data, horario); 
     }  
     
     public static String[] horariosVagos(String nomeMedico, String data) {
@@ -111,12 +111,17 @@ public class Control {
     
     public static boolean agendarConsulta(long CPFPaciente, String nomeMedico, String data, String horario){ 
         AtendimentoDAO.getInstance();                
-        return AtendimentoDAO.salvarConsulta(CPFPaciente, nomeMedico, data, horario) == true; 
+        return AtendimentoDAO.salvarConsulta(CPFPaciente, nomeMedico, data, horario); 
     }  
     
     public static boolean deletarConsulta(long CPFPaciente, String data, String horario){
         AtendimentoDAO.getInstance();                
-        return AtendimentoDAO.deletarConsulta(CPFPaciente, data, horario) == true; 
+        return AtendimentoDAO.deletarConsulta(CPFPaciente, data, horario); 
+    }
+    
+    public static boolean deletarExame(long CPFPaciente, String data, String horario) {
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.deletarExame(CPFPaciente, data, horario); 
     }
     
     public static ResultSet buscarConsultaMedico(String nomeMedico){
@@ -130,6 +135,31 @@ public class Control {
         ResultSet rs = AtendimentoDAO.buscarConsultaPaciente(CPFPaciente);
         return rs;
     }
+    
+    public static ResultSet buscarExamePaciente(long CPFPaciente) {
+        AtendimentoDAO.getInstance();  
+        ResultSet rs = AtendimentoDAO.buscarExamePaciente(CPFPaciente);
+        return rs;
+    }
+
+    public static boolean agendarExame(long CPFPaciente, String data, String horario) {
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.salvarExame(CPFPaciente, data, horario); 
+    }
+
+    public static boolean horarioJaUsadoExame(String data, String horario) {
+        AtendimentoDAO.getInstance();                
+        return AtendimentoDAO.horarioUsadoExame(data, horario); 
+    }
+
+    public static String[] horariosVagosExame(String data) {
+        AtendimentoDAO.getInstance();
+        return AtendimentoDAO.horariosVagosExame(data);
+    }
+
+ 
+
+   
 
 
     

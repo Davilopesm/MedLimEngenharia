@@ -173,4 +173,83 @@ public class AtendimentoDAOTest {
         }   
     }
     
+   
+
+    @Test
+    public void testHorarioUsadoExame() {
+        testGetInstance();
+        System.out.println("horarioUsadoExame");
+        String data = "31-10-2017";
+        String horario = "16:00";
+        boolean result = AtendimentoDAO.horarioUsadoExame(data, horario);
+        if(result){
+            System.out.println("Deu bom");  
+        }
+        else{
+            fail("Deu ruim.");
+        }   
+    }
+
+    @Test
+    public void testHorariosVagosExame() {
+        testGetInstance();
+        System.out.println("horariosVagosExame");
+        String data = "31-10-2017";
+        String[] result = AtendimentoDAO.horariosVagosExame(data);
+        if(result != null){
+            System.out.println("Deu bom");  
+        }
+        else{
+            fail("Deu ruim.");
+        }   
+    }
+    
+     @Test
+    public void testSalvarExame() {
+        testGetInstance();
+        System.out.println("salvarExame");
+        long CPFPaciente = 43098179805L;
+        String data = "31-10-2017";
+        String horario = "16:00";
+        boolean result = AtendimentoDAO.salvarExame(CPFPaciente, data, horario);
+        if(result){
+            System.out.println("Deu bom");  
+        }
+        else{
+            fail("Deu ruim.");
+        }   
+    }
+
+  
+
+    @Test
+    public void testBuscarExamePaciente() {
+        System.out.println("buscarExamePaciente");
+        testGetInstance();
+        ResultSet result; 
+        result = AtendimentoDAO.buscarExamePaciente(43098179805L);
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+
+    @Test
+    public void testDeletarExame() {
+        testGetInstance();
+        System.out.println("deletarExame");
+        long CPFPaciente = 43098179805L;
+        String data = "31-10-2017";
+        String horario = "16:00";
+        boolean result = AtendimentoDAO.deletarExame(CPFPaciente, data, horario);
+        if(result){
+            System.out.println("Deu bom");  
+        }
+        else{
+            fail("Deu ruim.");
+        }   
+    }
+    
 }

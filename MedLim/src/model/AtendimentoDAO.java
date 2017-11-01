@@ -25,6 +25,7 @@ public class AtendimentoDAO extends DAO {
     private static String sql;
     private static PreparedStatement pstmt;
     private static ResultSet rs;
+     
 
     private AtendimentoDAO() {
         
@@ -54,6 +55,7 @@ public class AtendimentoDAO extends DAO {
         } 
         return false;               
     }
+
     
     public static boolean consultarMedicoExiste(String nomeMedico){
         sql = "SELECT * FROM profissional WHERE nome=?"; 
@@ -91,6 +93,25 @@ public class AtendimentoDAO extends DAO {
         return false;
     }
     
+    public static boolean horarioUsadoExame(String data, String horario) {
+        sql = "SELECT * FROM exame WHERE (data,horario)=(?,?)"; 
+      
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setString(1, data);
+            pstmt.setString(2, horario);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                return true;
+            }          
+        }
+        catch(SQLException ex){
+            return false;
+        }   
+        return false;
+    }
+
+
     public static String[] horariosVagos(String nomeMedico, String data) {
         sql = "SELECT * FROM consulta WHERE (nome_medico,data)=(?,?)";        
         
@@ -114,6 +135,28 @@ public class AtendimentoDAO extends DAO {
        return retorno;
     }
     
+    public static String[] horariosVagosExame(String data) {
+        sql = "SELECT * FROM exame WHERE (data)=(?)";        
+        
+        List<String> listOfString = new ArrayList<String>();
+
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setString(1, data);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                listOfString.add(rs.getString("horario"));
+            }          
+        }
+        catch(SQLException ex){
+            return null;
+        }
+
+       String[] retorno = listOfString.toArray(new String[0]);
+       return retorno;
+    }
+       
     
     
      
@@ -133,23 +176,23 @@ public class AtendimentoDAO extends DAO {
         }
     }
     
-    public static boolean deletarConsulta(long CPFPaciente, String data, String horario){
-        sql = "DELETE FROM consulta WHERE (CPF_paciente,data,horario) = (?,?,?)";
-        
+    public static boolean salvarExame(long CPFPaciente, String data, String horario) {
+        sql = "INSERT INTO exame (CPF_paciente,data,horario) VALUES (?,?,?)";
         try{
             pstmt = myCONN.prepareStatement(sql);
             pstmt.setLong(1, CPFPaciente);
             pstmt.setString(2, data);
             pstmt.setString(3, horario);
-            pstmt.executeUpdate();  
-            return true;              
+            pstmt.executeUpdate();
+            return true;
         }
         catch(SQLException ex){
-           return false;
-        }                    
+            return false;            
+        }
     }
     
-     public static ResultSet buscarConsultaMedico(String nomeMedico)  {
+   
+    public static ResultSet buscarConsultaMedico(String nomeMedico)  {
  
       sql = "SELECT * FROM consulta WHERE nome_medico=?";
  
@@ -183,6 +226,60 @@ public class AtendimentoDAO extends DAO {
            return null;
       }                    
        
+    }
+    
+     
+    public static ResultSet buscarExamePaciente(long CPFPaciente)  {
+ 
+      sql = "SELECT * FROM exame WHERE CPF_paciente=?";
+ 
+      
+      try{
+        pstmt = myCONN.prepareStatement(sql);
+        pstmt.setLong(1, CPFPaciente);
+        rs = pstmt.executeQuery();  
+        return rs;
+       
+      }
+      catch(SQLException ex){
+           return null;
+      }                    
+       
+    }
+    
+    public static boolean deletarConsulta(long CPFPaciente, String data, String horario){
+        sql = "DELETE FROM consulta WHERE (CPF_paciente,data,horario) = (?,?,?)";
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPFPaciente);
+            pstmt.setString(2, data);
+            pstmt.setString(3, horario);
+            pstmt.executeUpdate();  
+            return true;              
+        }
+        catch(SQLException ex){
+           return false;
+        }                    
+    }
+    
+    
+    public static boolean deletarExame(long CPFPaciente, String data, String horario) {
+        sql = "DELETE FROM exame WHERE (CPF_paciente,data,horario) = (?,?,?)";
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPFPaciente);
+            pstmt.setString(2, data);
+            pstmt.setString(3, horario);
+            pstmt.executeUpdate();  
+            return true;              
+        }
+        catch(SQLException ex){
+           return false;
+        }                    
+    
+    
     }
     
     
