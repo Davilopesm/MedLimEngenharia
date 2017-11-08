@@ -121,6 +121,44 @@ public class ProfissionalDAOTest {
             fail("Deu Ruim");
         }
     }
+    
+    @Test
+    public void testAtualizarTecnico() {
+        System.out.println("atualizarTecnico");
+        long CPF = 0L;
+        String novoNome = "Adamastor";
+        long novoCPF = 0L;
+        long novoRG = 0L;
+        String novoEndereco = "Texas";
+        String novoTelefone = "19992235433";
+        String novoCargo = "Jobster";
+        boolean result = ProfissionalDAO.atualizarTecnico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCargo);
+        if(result){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+    
+     @Test
+    public void testAtualizarMedico() {
+        System.out.println("atualizarMedico");
+        long CPF = 0L;
+        String novoNome = "Adamastor";
+        long novoCPF = 1L;
+        long novoRG = 1L;
+        String novoEndereco = "Texas";
+        String novoTelefone = "19992235433";
+        long novoCRM = 777;
+        boolean result = ProfissionalDAO.atualizarMedico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCRM);
+        if(result){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
 
     @Test
     public void testDeletarProfissional() {
@@ -137,6 +175,36 @@ public class ProfissionalDAOTest {
             fail("Deu Ruim");
         }
     }
+
+    @Test
+    public void testBuscarUmProfissionalTecnico() {
+        System.out.println("buscarUmProfissionalTecnico");
+        testGetInstance();
+        long CPF = 0L;
+        ResultSet result = ProfissionalDAO.buscarUmProfissionalTecnico(CPF);
+        if(result != null){
+            System.out.println("Deu bom");
+        }
+        else{
+            fail("Deu ruim");
+        }
+    }
+
+    @Test
+    public void testBuscarProfissionalTecnico() {
+        System.out.println("buscarUmProfissionalTecnico");
+        testGetInstance();
+        ResultSet result = ProfissionalDAO.buscarProfissionalTecnico();
+        if(result != null){
+            System.out.println("Deu bom");
+        }
+        else{
+            fail("Deu ruim");
+        }
+    }
+
+
+   
     
     
 }

@@ -660,7 +660,9 @@ public class TelaAgendamento extends javax.swing.JFrame {
                         JOptionPane optionPane = new JOptionPane("Consulta Agendada com sucesso");
                         JDialog dialog = optionPane.createDialog("Dados Salvos");
                         dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-                        dialog.setVisible(true);     
+                        dialog.setVisible(true);
+                        jTextField2.setText("");
+                        jTextField1.setText("");                       
                     }
                     else{//se n conseguiu marcar consulta
                         JOptionPane optionPane = new JOptionPane("Não foi possivel marcar no momento, tente mais tarde");
@@ -702,7 +704,8 @@ public class TelaAgendamento extends javax.swing.JFrame {
             JOptionPane optionPane = new JOptionPane("Consulta desmarcada com sucesso!");
             JDialog dialog = optionPane.createDialog("Dados Salvos");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-            dialog.setVisible(true);   
+            dialog.setVisible(true); 
+            jTextField3.setText("");
         }
         else{
             JOptionPane optionPane = new JOptionPane("Erro ao desmarcar consulta, tente novamente");
@@ -771,6 +774,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
                     JDialog dialog = optionPane.createDialog("Dados Salvos");
                     dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
                     dialog.setVisible(true);     
+                    jTextField6.setText("");
                 }
                 else{//se n conseguiu marcar consulta
                     JOptionPane optionPane = new JOptionPane("Não foi possivel marcar no momento, tente mais tarde");
@@ -811,7 +815,8 @@ public class TelaAgendamento extends javax.swing.JFrame {
             JOptionPane optionPane = new JOptionPane("Exame desmarcado com sucesso!");
             JDialog dialog = optionPane.createDialog("Dados Salvos");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-            dialog.setVisible(true);   
+            dialog.setVisible(true);
+            jTextField8.setText("");
         }
         else{
             JOptionPane optionPane = new JOptionPane("Erro ao desmarcar exame, tente novamente");

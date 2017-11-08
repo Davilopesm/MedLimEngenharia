@@ -40,6 +40,11 @@ public class Control {
         return rs;
     }
     
+    public static boolean atualizarPaciente(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone){ 
+        PacienteDAO.getInstance();                
+        return PacienteDAO.atualizarPaciente(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone); 
+    }
+    
     public static boolean deletarPaciente(long CPF){ 
         PacienteDAO.getInstance();                
         return PacienteDAO.deletarPaciente(CPF); 
@@ -91,6 +96,17 @@ public class Control {
         ResultSet rs = ProfissionalDAO.buscarProfissionalTecnico();
         return rs;
     }
+    
+    public static boolean atualizarTecnico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, String novoCargo){ 
+        ProfissionalDAO.getInstance();                
+        return ProfissionalDAO.atualizarTecnico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCargo); 
+    }  
+    
+    public static boolean atualizarMedico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, long novoCRM){ 
+        ProfissionalDAO.getInstance();                
+        return ProfissionalDAO.atualizarMedico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCRM); 
+    } 
+    
     
     public static boolean deletarProfissional(long CPF){ 
         ProfissionalDAO.getInstance();                

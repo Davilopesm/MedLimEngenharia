@@ -55,7 +55,7 @@ public class AtendimentoDAOTest {
     public void testConsultarPacienteExiste() {
         testGetInstance();
         System.out.println("consultarPacienteExiste");
-        long CPFPaciente = 43098179805L;
+        long CPFPaciente = 0L;
         boolean result = AtendimentoDAO.consultarPacienteExiste(CPFPaciente);
         if(result){
           System.out.println("Deu bom");  
@@ -69,7 +69,7 @@ public class AtendimentoDAOTest {
     public void testConsultarMedicoExiste() {
         testGetInstance();
         System.out.println("consultarPacienteExiste");
-        String nomeMedico = "Jorge Canvas";
+        String nomeMedico = "Jorge";
         boolean result = AtendimentoDAO.consultarMedicoExiste(nomeMedico);
         if(result){
           System.out.println("Deu bom");  
@@ -87,7 +87,7 @@ public class AtendimentoDAOTest {
         String data = "31-10-2017";
         String horario = "16:00";
         boolean result = AtendimentoDAO.horarioUsado(nomeMedico, data, horario);
-        if(!result){
+        if(result){
             System.out.println("Deu bom");  
         }
         else{

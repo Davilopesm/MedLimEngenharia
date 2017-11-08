@@ -137,6 +137,48 @@ public class ProfissionalDAO extends DAO{
       }  
       return rs;
     }
+    
+     public static boolean atualizarTecnico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, String novoCargo){ 
+        sql = "UPDATE profissional SET nome = ?, CPF = ?, RG = ?, endereco = ?, telefone = ?, cargo = ? WHERE CPF = ?";
+     
+      
+         try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(7, CPF);
+            pstmt.setString(1, novoNome);
+            pstmt.setLong(2, novoCPF);
+            pstmt.setLong(3, novoRG);
+            pstmt.setString(4, novoEndereco);
+            pstmt.setString(5, novoTelefone);    
+            pstmt.setString(6, novoCargo); 
+            pstmt.executeUpdate();
+            return true;        
+        }
+        catch(SQLException ex){
+           return false;
+        }     
+    }
+     
+    public static boolean atualizarMedico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, long novoCRM){ 
+        sql = "UPDATE profissional SET nome = ?, CPF = ?, RG = ?, endereco = ?, telefone = ?, CRM = ? WHERE CPF = ?";
+     
+      
+         try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(7, CPF);
+            pstmt.setString(1, novoNome);
+            pstmt.setLong(2, novoCPF);
+            pstmt.setLong(3, novoRG);
+            pstmt.setString(4, novoEndereco);
+            pstmt.setString(5, novoTelefone);    
+            pstmt.setLong(6, novoCRM); 
+            pstmt.executeUpdate();
+            return true;        
+        }
+        catch(SQLException ex){
+           return false;
+        }     
+    }
      
      
     public static boolean deletarProfissional(long CPF){

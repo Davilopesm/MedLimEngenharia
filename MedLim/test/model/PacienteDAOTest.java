@@ -90,38 +90,12 @@ public class PacienteDAOTest {
             fail("Deu Ruim");
         }
     }
-
-    @Test
-    public void testDeletarPaciente() {
-        System.out.println("deletarPaciente");
-        long CPF = 43098179805L;
-        boolean result = PacienteDAO.deletarPaciente(CPF);
-        if(result){
-            System.out.println(result);            
-        }
-        else{
-            fail("Deu Ruim");
-        }
-    }
-
-    @Test
-    public void testBuscarHistorico() {
-        System.out.println("buscarHistorico");
-        long CPF = 43098179805L;
-        String result = PacienteDAO.buscarHistorico(CPF);
-        if(result != null){
-            System.out.println(result);            
-        }
-        else{
-            fail("Deu Ruim");
-        }
-    }
-
+    
     @Test
     public void testAtualizarHistorico() {
         testGetInstance();
         System.out.println("buscarHistorico");
-        long CPF = 43098179805L;
+        long CPF = 0L;
         String teste = "Fala chapa";
         boolean result = PacienteDAO.atualizarHistorico(CPF, teste);
         if(result){
@@ -131,5 +105,55 @@ public class PacienteDAOTest {
             fail("Deu Ruim");
         }
     }
+    
+      
+    @Test
+    public void testBuscarHistorico() {
+        System.out.println("buscarHistorico");
+        long CPF = 0L;
+        String result = PacienteDAO.buscarHistorico(CPF);
+        if(result != null){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+   
+    
+    @Test
+    public void testAtualizarPaciente() {
+        System.out.println("atualizarPaciente");
+        long CPF = 43098179805L;
+        String novoNome = "Adamastor";
+        long novoCPF = 0L;
+        long novoRG = 0L;
+        String novoEndereco = "Texas";
+        String novoTelefone = "19992235433";
+        boolean result = PacienteDAO.atualizarPaciente(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone);
+        if(result){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+    
+    @Test
+    public void testDeletarPaciente() {
+        System.out.println("deletarPaciente");
+        long CPF = 0L;
+        boolean result = PacienteDAO.deletarPaciente(CPF);
+        if(result){
+            System.out.println(result);            
+        }
+        else{
+            fail("Deu Ruim");
+        }
+    }
+
+  
+
+    
     
 }

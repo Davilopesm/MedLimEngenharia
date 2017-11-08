@@ -137,6 +137,26 @@ public class PacienteDAO extends DAO {
      
     }
     
+    public static boolean atualizarPaciente(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone){ 
+        sql = "UPDATE paciente SET nome = ?, CPF = ?, RG = ?, endereco = ?, telefone = ? WHERE CPF = ?";
+     
+      
+         try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(6, CPF);
+            pstmt.setString(1, novoNome);
+            pstmt.setLong(2, novoCPF);
+            pstmt.setLong(3, novoRG);
+            pstmt.setString(4, novoEndereco);
+            pstmt.setString(5, novoTelefone);            
+            pstmt.executeUpdate();
+            return true;        
+        }
+        catch(SQLException ex){
+           return false;
+        }     
+    }
+    
     
     public static boolean deletarPaciente(long CPF){
         

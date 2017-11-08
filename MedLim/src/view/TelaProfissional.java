@@ -325,6 +325,11 @@ public class TelaProfissional extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/voltar.jpg"))); // NOI18N
@@ -614,6 +619,11 @@ public class TelaProfissional extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/voltar.jpg"))); // NOI18N
@@ -805,7 +815,14 @@ public class TelaProfissional extends javax.swing.JFrame {
             JOptionPane optionPane = new JOptionPane("Medico salvo com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Salvos!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-            dialog.setVisible(true);            
+            dialog.setVisible(true);
+            jTextField1.setText("");  
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
         }
         else{
             JOptionPane optionPane = new JOptionPane("Não conseguimos salvar o medico no momento, tente novamente");
@@ -845,7 +862,8 @@ public class TelaProfissional extends javax.swing.JFrame {
            JOptionPane optionPane = new JOptionPane("Medico deletado com sucesso");
            JDialog dialog = optionPane.createDialog("Dados Deletados!");
            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-           dialog.setVisible(true);            
+           dialog.setVisible(true);  
+           jTextField16.setText("");
        }
        else{
            JOptionPane optionPane = new JOptionPane("Não conseguimos deletar o medico no momento, tente novamente");
@@ -875,7 +893,13 @@ public class TelaProfissional extends javax.swing.JFrame {
             JOptionPane optionPane = new JOptionPane("Tecnico salvo com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Salvos!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-            dialog.setVisible(true);            
+            dialog.setVisible(true); 
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
+            jTextField13.setText("");
         }
         else{
             JOptionPane optionPane = new JOptionPane("Não conseguimos salvar o tecnico no momento, tente novamente");
@@ -901,7 +925,8 @@ public class TelaProfissional extends javax.swing.JFrame {
             JOptionPane optionPane = new JOptionPane("Tecnico deletado com sucesso");
             JDialog dialog = optionPane.createDialog("Dados Deletados!");
             dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
-            dialog.setVisible(true);            
+            dialog.setVisible(true);
+            jTextField19.setText("");            
         }
         else{
             JOptionPane optionPane = new JOptionPane("Não conseguimos deletar o tecnico no momento, tente novamente");
@@ -931,6 +956,61 @@ public class TelaProfissional extends javax.swing.JFrame {
         jPanel4.repaint();
         jPanel4.revalidate();
     }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        int localClicado = jTable2.getSelectedRow();
+        long CPF = (long) jTable2.getValueAt(localClicado, 2);
+
+        String novoNome = JOptionPane.showInputDialog("Novo Nome do tecnico " +CPF+ " :"); 
+        long novoCPF = Long.parseLong(JOptionPane.showInputDialog("Novo CPF do tecnico " +CPF+ " :"));
+        long novoRG = Long.parseLong(JOptionPane.showInputDialog("Novo RG do tecnico " +CPF+ " :")); 
+        String novoEndereco = JOptionPane.showInputDialog("Novo Endereço do tecnico " +CPF+ " :");
+        String novoTelefone = JOptionPane.showInputDialog("Novo Telefone do tecnico " +CPF+ " :"); 
+        String novoCargo = JOptionPane.showInputDialog("Novo Cargo do tecnico " +CPF+ " :"); 
+        
+        
+        if(Control.atualizarTecnico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCargo)){
+            jTable2.setModel(DbUtils.resultSetToTableModel(Control.buscarProfissionalTecnico()));
+            JOptionPane optionPane = new JOptionPane("Tecnico atualizado com sucesso");
+            JDialog dialog = optionPane.createDialog("Dados Atualizados!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);   
+        }
+        else{
+            JOptionPane optionPane = new JOptionPane("Não conseguimos atualizar o tecnico no momento, tente novamente");
+            JDialog dialog = optionPane.createDialog("Erro!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true); 
+        }
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int localClicado = jTable1.getSelectedRow();
+        long CPF = (long) jTable1.getValueAt(localClicado, 2);
+
+        String novoNome = JOptionPane.showInputDialog("Novo Nome do medico " +CPF+ " :"); 
+        long novoCPF = Long.parseLong(JOptionPane.showInputDialog("Novo CPF do medico " +CPF+ " :"));
+        long novoRG = Long.parseLong(JOptionPane.showInputDialog("Novo RG do medico " +CPF+ " :")); 
+        String novoEndereco = JOptionPane.showInputDialog("Novo Endereço do medico " +CPF+ " :");
+        String novoTelefone = JOptionPane.showInputDialog("Novo Telefone do medico " +CPF+ " :"); 
+        long novoCRM = Long.parseLong(JOptionPane.showInputDialog("Novo CRM do medico " +CPF+ " :")); 
+        
+        
+        if(Control.atualizarMedico(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone, novoCRM)){
+            jTable1.setModel(DbUtils.resultSetToTableModel(Control.buscarProfissionalMedico()));
+            JOptionPane optionPane = new JOptionPane("Medico atualizado com sucesso");
+            JDialog dialog = optionPane.createDialog("Dados Atualizados!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true);   
+        }
+        else{
+            JOptionPane optionPane = new JOptionPane("Não conseguimos atualizar o medico no momento, tente novamente");
+            JDialog dialog = optionPane.createDialog("Erro!");
+            dialog.setAlwaysOnTop(this.isAlwaysOnTopSupported());
+            dialog.setVisible(true); 
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
