@@ -14,12 +14,15 @@ public class Control {
         return LoginDAO.checarLogin(login, senha);        
     }
     
-    public static boolean criarLogin(){
+    public static boolean criarLogin(long CPF, String login, String senha){
         LoginDAO.getInstance();                
-        LoginDAO.cadastrarLogin();
-        return true;
+        return LoginDAO.criarLogin(CPF, login, senha);
     }
     
+    public static boolean checarProfissionalCPF(long CPF){
+        LoginDAO.getInstance();                
+        return LoginDAO.checarProfissionalCPF(CPF);
+    }
     
     
     //FUNÇÕES DE PACIENTE
@@ -45,7 +48,10 @@ public class Control {
         return PacienteDAO.atualizarPaciente(CPF, novoNome, novoCPF, novoRG, novoEndereco, novoTelefone); 
     }
     
-    public static boolean deletarPaciente(long CPF){ 
+    public static boolean deletarPaciente(long CPF){
+        if(!pacienteExiste(CPF)){
+            return false;
+        }
         PacienteDAO.getInstance();                
         return PacienteDAO.deletarPaciente(CPF); 
     }
@@ -109,6 +115,9 @@ public class Control {
     
     
     public static boolean deletarProfissional(long CPF){ 
+        if(!checarProfissionalCPF(CPF)){
+            return false;
+        }
         ProfissionalDAO.getInstance();                
         return ProfissionalDAO.deletarProfissional(CPF); 
     }

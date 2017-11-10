@@ -54,27 +54,34 @@ public class LoginDAO extends DAO {
         }
     }
     
-    public static boolean cadastrarLogin(){
-        sql = "INSERT INTO login (login, senha) VALUES (?,?)";
-        
-        String login = "admin";
-        String senha = "admin";
-        
-        try{//converter para hash q senha
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(senha.getBytes());
-            BASE64Encoder encoder = new BASE64Encoder();
-            senha = encoder.encode(digest.digest());
-	}
-        catch(NoSuchAlgorithmException ns){
-            return false;
-	}
-        
+    public static boolean checarProfissionalCPF(long CPF){
+        sql = "SELECT * FROM profissional WHERE CPF=?"; 
+      
+        ResultSet rs;
         
         try{
             pstmt = myCONN.prepareStatement(sql);
-            pstmt.setString(1, login);
-            pstmt.setString(2, senha);
+            pstmt.setLong(1, CPF);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                return true;
+            }          
+        }
+        catch(SQLException ex){
+            return false;
+        }   
+        return false;
+       
+    }
+    
+    public static boolean criarLogin(long CPF, String login, String senha){
+        sql = "INSERT INTO login (CPF, login, senha) VALUES (?,?,?)";     
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPF);
+            pstmt.setString(2, login);
+            pstmt.setString(3, senha);
     
             pstmt.executeUpdate();
             return true;
