@@ -123,6 +123,34 @@ public class ProfissionalDAOTest {
     }
     
     @Test
+    public void testBuscarTecnicoAtualizar() {
+        testGetInstance();
+        System.out.println("buscarTecnicoAtualizar");
+        long CPF = 43098179805L;
+        String[] result = ProfissionalDAO.buscarTecnicoAtualizar(CPF);
+        if(result != null){
+            System.out.println("Sucesso");
+        }
+        else{
+            fail("The test case is a prototype.");
+        }
+    }
+
+    @Test
+    public void testBuscarMedicoAtualizar() {
+        testGetInstance();
+        System.out.println("buscarMedicoAtualizar");
+        long CPF = 430795805L;
+        String[] result = ProfissionalDAO.buscarMedicoAtualizar(CPF);
+        if(result != null){
+            System.out.println("Sucesso");
+        }
+        else{
+            fail("The test case is a prototype.");
+        }
+    }
+    
+    @Test
     public void testAtualizarTecnico() {
         System.out.println("atualizarTecnico");
         long CPF = 0L;
@@ -202,6 +230,8 @@ public class ProfissionalDAOTest {
             fail("Deu ruim");
         }
     }
+
+    
 
 
    

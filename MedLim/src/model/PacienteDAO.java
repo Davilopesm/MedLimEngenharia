@@ -137,6 +137,31 @@ public class PacienteDAO extends DAO {
      
     }
     
+    public static String[] buscarPacienteAtualizar(long CPF){
+        sql = "SELECT * FROM paciente WHERE CPF = ?";
+        
+        String[] dadosRetorno = new String[5];
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPF);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                dadosRetorno[0] = rs.getString("nome");
+                dadosRetorno[1] = rs.getString("CPF");
+                dadosRetorno[2] = rs.getString("RG");
+                dadosRetorno[3] = rs.getString("endereco");
+                dadosRetorno[4] = rs.getString("telefone");
+                return dadosRetorno;
+            }
+        }
+        catch(SQLException ex){
+            return null;
+        }
+        return null;
+    }
+    
     public static boolean atualizarPaciente(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone){ 
         sql = "UPDATE paciente SET nome = ?, CPF = ?, RG = ?, endereco = ?, telefone = ? WHERE CPF = ?";
      

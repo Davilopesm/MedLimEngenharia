@@ -67,6 +67,12 @@ public class Control {
        return PacienteDAO.atualizarHistorico(CPF, historico);
     }
     
+    public static String[] buscarPacienteAtualizar(long CPF){
+        PacienteDAO.getInstance();
+        String[] dadosPaciente = PacienteDAO.buscarPacienteAtualizar(CPF);
+        return dadosPaciente;
+    }
+    
     
     //FUNÇÕES DE PROFISSIONAL
     public static boolean inserirProfissionalTecnico(String nome, long CPF, long RG, String endereco, String telefone, String cargo){ 
@@ -101,6 +107,18 @@ public class Control {
         ProfissionalDAO.getInstance();  
         ResultSet rs = ProfissionalDAO.buscarProfissionalTecnico();
         return rs;
+    }
+    
+    public static String[] buscarAtualizarTecnico(long CPF){
+        ProfissionalDAO.getInstance();
+        String[] dadosTecnico = ProfissionalDAO.buscarTecnicoAtualizar(CPF);
+        return dadosTecnico;
+    }
+    
+    public static String[] buscarAtualizarMedico(long CPF){
+        ProfissionalDAO.getInstance();
+        String[] dadosMedico = ProfissionalDAO.buscarMedicoAtualizar(CPF);
+        return dadosMedico;
     }
     
     public static boolean atualizarTecnico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, String novoCargo){ 

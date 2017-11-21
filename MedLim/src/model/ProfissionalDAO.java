@@ -138,6 +138,33 @@ public class ProfissionalDAO extends DAO{
       return rs;
     }
     
+    public static String[] buscarTecnicoAtualizar(long CPF){
+        sql = "SELECT * FROM profissional WHERE CPF = ?";
+        
+        String[] dadosRetorno = new String[6];
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPF);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                dadosRetorno[0] = rs.getString("nome");
+                dadosRetorno[1] = rs.getString("CPF");
+                dadosRetorno[2] = rs.getString("RG");
+                dadosRetorno[3] = rs.getString("endereco");
+                dadosRetorno[4] = rs.getString("telefone");
+                dadosRetorno[5] = rs.getString("cargo");
+                return dadosRetorno;
+            }
+        }
+        catch(SQLException ex){
+            return null;
+        }
+        return null; 
+       
+    }
+    
      public static boolean atualizarTecnico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, String novoCargo){ 
         sql = "UPDATE profissional SET nome = ?, CPF = ?, RG = ?, endereco = ?, telefone = ?, cargo = ? WHERE CPF = ?";
      
@@ -157,6 +184,34 @@ public class ProfissionalDAO extends DAO{
         catch(SQLException ex){
            return false;
         }     
+    }
+     
+    public static String[] buscarMedicoAtualizar(long CPF){
+        sql = "SELECT * FROM profissional WHERE CPF = ?";
+        
+        String[] dadosRetorno = new String[7];
+        
+        try{
+            pstmt = myCONN.prepareStatement(sql);
+            pstmt.setLong(1, CPF);
+            rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                dadosRetorno[0] = rs.getString("nome");
+                dadosRetorno[1] = rs.getString("CPF");
+                dadosRetorno[2] = rs.getString("RG");
+                dadosRetorno[3] = rs.getString("endereco");
+                dadosRetorno[4] = rs.getString("telefone");
+                dadosRetorno[5] = rs.getString("CRM");
+                dadosRetorno[6] = rs.getString("areadeatuacao");
+                return dadosRetorno;
+            }
+        }
+        catch(SQLException ex){
+            return null;
+        }
+        return null; 
+       
     }
      
     public static boolean atualizarMedico(long CPF, String novoNome, long novoCPF, long novoRG, String novoEndereco, String novoTelefone, long novoCRM){ 

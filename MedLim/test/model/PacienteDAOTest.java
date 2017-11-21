@@ -109,6 +109,7 @@ public class PacienteDAOTest {
       
     @Test
     public void testBuscarHistorico() {
+        testGetInstance();
         System.out.println("buscarHistorico");
         long CPF = 0L;
         String result = PacienteDAO.buscarHistorico(CPF);
@@ -123,6 +124,7 @@ public class PacienteDAOTest {
     
     @Test
     public void testAtualizarPaciente() {
+        testGetInstance();
         System.out.println("atualizarPaciente");
         long CPF = 43098179805L;
         String novoNome = "Adamastor";
@@ -140,6 +142,20 @@ public class PacienteDAOTest {
     }
     
     @Test
+    public void testBuscarPacienteAtualizar() {
+        testGetInstance();
+        System.out.println("buscarPacienteAtualizar");
+        long CPF = 0L;
+        String[] result = PacienteDAO.buscarPacienteAtualizar(CPF);
+        if(result != null){
+            System.out.println("Sucesso");
+        }
+        else{
+            fail("The test case is a prototype.");
+        }
+    }
+    
+    @Test
     public void testDeletarPaciente() {
         System.out.println("deletarPaciente");
         long CPF = 0L;
@@ -151,6 +167,8 @@ public class PacienteDAOTest {
             fail("Deu Ruim");
         }
     }
+
+    
 
   
 

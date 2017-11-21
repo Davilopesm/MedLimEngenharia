@@ -69,7 +69,7 @@ public class AtendimentoDAOTest {
     public void testConsultarMedicoExiste() {
         testGetInstance();
         System.out.println("consultarPacienteExiste");
-        String nomeMedico = "Jorge";
+        String nomeMedico = "Jorge Canvas";
         boolean result = AtendimentoDAO.consultarMedicoExiste(nomeMedico);
         if(result){
           System.out.println("Deu bom");  
